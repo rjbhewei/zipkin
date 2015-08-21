@@ -32,6 +32,9 @@ if (username.isDefined && password.isDefined) {
 }
 
 val cluster = Factory.createClusterBuilder().build()
-val storeBuilder = Store.Builder(new cassandra.SpanStoreBuilder(cluster))
+val storeBuilder = Store.Builder(
+  new cassandra.SpanStoreBuilder(cluster),
+  new cassandra.DependencyStoreBuilder(cluster)
+)
 
 QueryServiceBuilder(storeBuilder)
